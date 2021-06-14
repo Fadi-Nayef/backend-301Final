@@ -30,15 +30,16 @@ function updateHandler(req,res){
     const {id}=req.params;
     MydigimonsModel.findOne({_id:id},(err,data)=>{
             data.name=name,
-            data.image=image,
+            data.img=image,
             data.level=level,
-            data.save().then(
-                MydigimonsModel.find({},(err,newData)=>{
+            data.save().then(()=>{MydigimonsModel.find({},(err,newData)=>{
     
                 res.send(newData)
-            }) 
-    )})
+            })
+        })
+    })
 }
+
 
 function deleteHandler(req,res){
     const {id}=req.params;
